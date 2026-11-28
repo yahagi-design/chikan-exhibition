@@ -289,6 +289,16 @@
       .reserve-done h3 { font-family: var(--mincho); font-weight: 500; letter-spacing: 0.2em; font-size: 17px; margin: 0 0 12px; }
       .reserve-done p { margin: 0; font-size: 13.5px; color: var(--ink-dim); line-height: 2.05; }
       .reserve-done .detail { color: var(--ink); font-family: var(--mincho); letter-spacing: 0.1em; font-size: 15px; margin-bottom: 10px; }
+      .reserve-primary { margin-top: clamp(32px, 5vw, 48px); padding: 32px 0 36px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .reserve-primary .btn-pill { min-width: min(320px, 100%); }
+      .reserve-primary-note { font-size: 12.5px; color: var(--ink-dim); letter-spacing: 0.08em; margin: 16px 0 0; line-height: 1.9; }
+      .calendar-head { margin-top: clamp(44px, 6vw, 64px); }
+      .calendar-head h3 { font-family: var(--mincho); font-weight: 500; font-size: 16px; letter-spacing: 0.24em; margin: 0 0 12px; }
+      .calendar-head p { margin: 0; max-width: 640px; font-size: 13.5px; color: var(--ink-dim); line-height: 2.05; }
+      .reserve-actions.subtle { gap: 6px; max-width: 420px; }
+      .textlink-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 40px; background: none; border: none; border-bottom: 1px solid var(--line-strong); border-radius: 0; color: var(--ink); font-family: var(--gothic); font-size: 13px; letter-spacing: 0.18em; padding: 6px 2px; cursor: pointer; text-align: left; text-decoration: none; width: fit-content; }
+      .textlink-btn:hover { border-color: var(--ink); }
+      @media (max-width: 640px) { .reminder-box li { flex-direction: column; gap: 4px; } .reminder-box .when { white-space: normal; } }
       .reminder-box { border-top: 1px solid var(--line); padding-top: 24px; }
       .reminder-box h3 { font-family: var(--mincho); font-weight: 500; font-size: 16px; letter-spacing: 0.24em; margin: 0 0 16px; }
       .reminder-box ul { list-style: none; margin: 0; padding: 0; }
@@ -432,7 +442,7 @@
       </div>
 
       <div class="hero-actions">
-        <a class="btn-pill" href="#reserve">来場予約する</a>
+        <a class="btn-pill" href="https://docs.google.com/forms/d/e/1FAIpQLScBpCkmKwXsEoOd1GOuISey2mubpKU9G4YvAWEOEHl22FfzPw/viewform" target="_blank" rel="noopener">来場予約する</a>
         <a class="btn-pill ghost" id="gcal-hero" href="#" target="_blank" rel="noopener">カレンダーに追加</a>
         <span class="countdown" id="countdown"></span>
       </div>
@@ -664,7 +674,7 @@
         </details>
         <details>
           <summary>予約は必要ですか<span class="plus">+</span></summary>
-          <div class="a"><p>予約なしでも入場できます。来場予約をしておくと、ご自身のカレンダーに予定が入り、来場日の1週間前と前日にリマインドが届きます。</p></div>
+          <div class="a"><p>予約なしでも入場できます。ご予約はGoogleフォームから受け付けています。フォームでご予約いただくと、開催の1週間前（12月19日）と前日（12月25日）に、ご入力いただいたメールアドレスへリマインドメールをお送りします。</p></div>
         </details>
         <details>
           <summary>駐車場はありますか<span class="plus">+</span></summary>
@@ -683,8 +693,18 @@
           <span class="en">RESERVATION</span>
         </div>
         <div class="reserve-lead">
-          <p>来場日と時間を選ぶと、そのままカレンダーに登録できるファイルを発行します。登録した予定には、来場日の<strong>1週間前</strong>と<strong>前日</strong>にリマインドが付きます。</p>
-          <p>予約なしの当日来場も歓迎です。混雑を避けたい方、年末の予定に組み込みたい方はご利用ください。</p>
+          <p>来場予約はGoogleフォームから受け付けています。下のボタンからフォームを開き、お名前・メールアドレス・来場希望日などをお知らせください。</p>
+          <p>フォームでご予約いただいた方には、開催の<strong>1週間前（12月19日）</strong>と<strong>前日（12月25日）</strong>に、ご入力いただいたメールアドレスへリマインドメールをお送りします。予約なしでも入場できますので、当日のご来場も歓迎です。</p>
+        </div>
+
+        <div class="reserve-primary">
+          <a class="btn-pill" href="https://docs.google.com/forms/d/e/1FAIpQLScBpCkmKwXsEoOd1GOuISey2mubpKU9G4YvAWEOEHl22FfzPw/viewform" target="_blank" rel="noopener">来場予約フォームへ</a>
+          <p class="reserve-primary-note">Googleフォームが新しいタブで開きます。</p>
+        </div>
+
+        <div class="calendar-head">
+          <h3>カレンダーだけ追加したい方へ</h3>
+          <p>フォームを使わず、ご自身のカレンダーにだけ予定を入れたい方はこちらをご利用ください。来場日と時間を選ぶと、カレンダー登録用のファイル発行とGoogleカレンダーへの追加ができます。こちらは予約にはなりませんので、リマインドメールをご希望の方は上のフォームからご予約ください。</p>
         </div>
 
         <div class="reserve-grid">
@@ -726,23 +746,23 @@
               </select>
             </div>
             <p class="form-error" id="form-error">お名前を入力してください。</p>
-            <div class="reserve-actions">
-              <button type="submit" class="btn-pill">カレンダー用ファイルを発行する</button>
-              <a class="btn-pill ghost" id="gcal-reserve" href="#" target="_blank" rel="noopener">Googleカレンダーに追加</a>
+            <div class="reserve-actions subtle">
+              <button type="submit" class="textlink-btn">カレンダー用ファイル（.ics）をダウンロード <span aria-hidden="true">→</span></button>
+              <a class="textlink-btn" id="gcal-reserve" href="#" target="_blank" rel="noopener">Googleカレンダーに追加 <span aria-hidden="true">→</span></a>
             </div>
             <div class="reserve-done" id="reserve-done">
               <h3>カレンダー登録の準備ができました</h3>
               <p class="detail" id="reserve-detail"></p>
-              <p>ダウンロードしたファイル（.ics）を開くと、カレンダーに予定が登録されます。リマインドは来場日の1週間前と前日に届きます。当日はそのまま会場へお越しください。</p>
+              <p>ダウンロードしたファイル（.ics）を開くと、カレンダーに予定が登録されます。カレンダー側のリマインドは来場日の1週間前と前日に届きます。こちらはカレンダー登録のみで、来場予約は完了していません。予約をご希望の方は上のGoogleフォームからお申し込みください。</p>
             </div>
           </form>
 
           <div class="reminder-box">
             <h3>リマインドについて</h3>
             <ul class="stagger">
-              <li><span class="when">来場日の1週間前</span><span class="what">カレンダーから1回目のリマインドが届きます（初日・12月26日来場の場合は12月19日）。</span></li>
-              <li><span class="when">来場日の前日</span><span class="what">前日にもう一度リマインドが届きます（初日来場の場合は12月25日）。</span></li>
-              <li><span class="when">当日</span><span class="what">11:00〜18:00の開場時間内にお越しください。入場は無料です。</span></li>
+              <li><span class="when">開催の1週間前 — 12月19日</span><span class="what">Googleフォームでご予約いただいた方へ、ご入力いただいたメールアドレスにリマインドメールをお送りします。</span></li>
+              <li><span class="when">開催の前日 — 12月25日</span><span class="what">前日にもう一度、メールでリマインドをお送りします。</span></li>
+              <li><span class="when">当日</span><span class="what">11:00〜18:00の開場時間内にお越しください。入場は無料で、予約なしでも入場できます。</span></li>
             </ul>
           </div>
         </div>
