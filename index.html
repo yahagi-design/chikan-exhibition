@@ -7,6 +7,14 @@
     <meta name="description" content="写真家・大河内琢巳の個展『知感 -CHIKAN-』第2回。2026年12月26日（土）〜30日（水）11:00〜18:00、DEIL春日井オフィス・ショールーム（愛知県春日井市）。入場無料。" />
     <link rel="icon" href="data:," />
     <title>写真展『知感 -CHIKAN-』｜大河内琢巳 — 2026.12.26–30 DEIL春日井</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBCNKYYXK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DRBCNKYYXK');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -795,6 +803,33 @@
         } else {
           revealEls.forEach(function (el) { el.classList.add("in"); });
         }
+      })();
+    </script>
+    <script>
+      /* GA4 クリック計測：主要な外部リンクのクリックをイベントとして送信する */
+      (function () {
+        var RULES = [
+          { name: "reserve_form_click", match: "docs.google.com/forms/d/e/1FAIpQLScBpCkmKwXsEoOd1GOuISey2mubpKU9G4YvAWEOEHl22FfzPw" },
+          { name: "press_form_click", match: "docs.google.com/forms/d/e/1FAIpQLSdi57uBtjL3EIxKg5MYDW0anmYRAk1PP0QwDfc5kQuXjrMM3Q" },
+          { name: "calendar_add_click", match: "calendar.google.com" },
+          { name: "instagram_click", match: "instagram.com/photo_by_takumi" },
+          { name: "deil_site_click", match: "deil.co.jp" }
+        ];
+        document.addEventListener("click", function (e) {
+          var a = e.target && e.target.closest ? e.target.closest("a") : null;
+          if (!a || !a.href) return;
+          for (var i = 0; i < RULES.length; i++) {
+            if (a.href.indexOf(RULES[i].match) !== -1) {
+              if (typeof gtag === "function") {
+                gtag("event", RULES[i].name, {
+                  event_category: "outbound",
+                  link_url: a.href
+                });
+              }
+              return;
+            }
+          }
+        });
       })();
     </script>
   </body>
