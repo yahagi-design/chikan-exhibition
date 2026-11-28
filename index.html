@@ -268,34 +268,13 @@
       .reserve-lead p { margin: 0 0 1.2em; }
       .reserve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 88px); margin-top: clamp(36px, 5vw, 56px); align-items: start; }
       @media (max-width: 820px) { .reserve-grid { grid-template-columns: 1fr; } }
-      .field { margin-bottom: 26px; }
-      .field label { display: block; font-size: 11px; letter-spacing: 0.28em; color: var(--ink-dim); margin-bottom: 10px; }
-      .field input, .field select {
-        width: 100%; min-height: 52px;
-        background: transparent; color: var(--ink);
-        border: none; border-bottom: 1px solid var(--line-strong); border-radius: 0;
-        font-family: var(--gothic); font-size: 16px; letter-spacing: 0.06em;
-        padding: 8px 2px; outline: none;
-      }
-      .field input:focus, .field select:focus { border-bottom-color: var(--ink); }
-      .field select option { background: var(--bg-soft); color: var(--ink); }
-      .form-error { display: none; color: #e8a0a0; font-size: 13px; letter-spacing: 0.08em; margin: 4px 0 18px; }
-      .reserve-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; max-width: 420px; }
-      .reserve-actions .btn-pill { width: 100%; cursor: pointer; font-family: var(--gothic); }
-      button.btn-pill { border: 1px solid var(--ink); }
-      .reserve-done {
-        display: none; border: 1px solid var(--line-strong); padding: 26px 28px; margin-top: 28px; max-width: 560px;
-      }
-      .reserve-done h3 { font-family: var(--mincho); font-weight: 500; letter-spacing: 0.2em; font-size: 17px; margin: 0 0 12px; }
-      .reserve-done p { margin: 0; font-size: 13.5px; color: var(--ink-dim); line-height: 2.05; }
-      .reserve-done .detail { color: var(--ink); font-family: var(--mincho); letter-spacing: 0.1em; font-size: 15px; margin-bottom: 10px; }
       .reserve-primary { margin-top: clamp(32px, 5vw, 48px); padding: 32px 0 36px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
       .reserve-primary .btn-pill { min-width: min(320px, 100%); }
       .reserve-primary-note { font-size: 12.5px; color: var(--ink-dim); letter-spacing: 0.08em; margin: 16px 0 0; line-height: 1.9; }
-      .calendar-head { margin-top: clamp(44px, 6vw, 64px); }
       .calendar-head h3 { font-family: var(--mincho); font-weight: 500; font-size: 16px; letter-spacing: 0.24em; margin: 0 0 12px; }
       .calendar-head p { margin: 0; max-width: 640px; font-size: 13.5px; color: var(--ink-dim); line-height: 2.05; }
-      .reserve-actions.subtle { gap: 6px; max-width: 420px; }
+      .calendar-action { margin-top: 26px; }
+      .press-action { margin-top: clamp(28px, 4vw, 40px); }
       .textlink-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 40px; background: none; border: none; border-bottom: 1px solid var(--line-strong); border-radius: 0; color: var(--ink); font-family: var(--gothic); font-size: 13px; letter-spacing: 0.18em; padding: 6px 2px; cursor: pointer; text-align: left; text-decoration: none; width: fit-content; }
       .textlink-btn:hover { border-color: var(--ink); }
       @media (max-width: 640px) { .reminder-box li { flex-direction: column; gap: 4px; } .reminder-box .when { white-space: normal; } }
@@ -702,60 +681,14 @@
           <p class="reserve-primary-note">Googleフォームが新しいタブで開きます。</p>
         </div>
 
-        <div class="calendar-head">
-          <h3>カレンダーだけ追加したい方へ</h3>
-          <p>フォームを使わず、ご自身のカレンダーにだけ予定を入れたい方はこちらをご利用ください。来場日と時間を選ぶと、カレンダー登録用のファイル発行とGoogleカレンダーへの追加ができます。こちらは予約にはなりませんので、リマインドメールをご希望の方は上のフォームからご予約ください。</p>
-        </div>
-
         <div class="reserve-grid">
-          <form id="reserve-form" class="stagger" novalidate>
-            <div class="field">
-              <label for="f-name">お名前 — NAME</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="例：山田 花子" />
-            </div>
-            <div class="field">
-              <label for="f-date">来場日 — DATE</label>
-              <select id="f-date" name="date">
-                <option value="2026-12-26">12月26日（土）</option>
-                <option value="2026-12-27">12月27日（日）</option>
-                <option value="2026-12-28">12月28日（月）</option>
-                <option value="2026-12-29">12月29日（火）</option>
-                <option value="2026-12-30">12月30日（水）</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-time">来場時間 — TIME</label>
-              <select id="f-time" name="time">
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00" selected>13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-people">人数 — GUESTS</label>
-              <select id="f-people" name="people">
-                <option value="1">1名</option>
-                <option value="2">2名</option>
-                <option value="3">3名</option>
-                <option value="4">4名</option>
-                <option value="5">5名以上</option>
-              </select>
-            </div>
-            <p class="form-error" id="form-error">お名前を入力してください。</p>
-            <div class="reserve-actions subtle">
-              <button type="submit" class="textlink-btn">カレンダー用ファイル（.ics）をダウンロード <span aria-hidden="true">→</span></button>
-              <a class="textlink-btn" id="gcal-reserve" href="#" target="_blank" rel="noopener">Googleカレンダーに追加 <span aria-hidden="true">→</span></a>
-            </div>
-            <div class="reserve-done" id="reserve-done">
-              <h3>カレンダー登録の準備ができました</h3>
-              <p class="detail" id="reserve-detail"></p>
-              <p>ダウンロードしたファイル（.ics）を開くと、カレンダーに予定が登録されます。カレンダー側のリマインドは来場日の1週間前と前日に届きます。こちらはカレンダー登録のみで、来場予約は完了していません。予約をご希望の方は上のGoogleフォームからお申し込みください。</p>
-            </div>
-          </form>
+          <div class="calendar-head">
+            <h3>カレンダーだけ追加したい方へ</h3>
+            <p>フォームを使わず、ご自身のカレンダーにだけ予定を入れたい方はこちら。会期（12月26日〜30日）を終日イベントとして追加できます。こちらは予約にはなりませんので、リマインドメールをご希望の方は上のフォームからご予約ください。</p>
+            <p class="calendar-action">
+              <a class="textlink-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E5%86%99%E7%9C%9F%E5%B1%95%E3%80%8E%E7%9F%A5%E6%84%9F%20-CHIKAN-%E3%80%8F%E5%A4%A7%E6%B2%B3%E5%86%85%E7%90%A2%E5%B7%B3&amp;dates=20261226/20261231&amp;details=%E5%86%99%E7%9C%9F%E5%AE%B6%E3%83%BB%E5%A4%A7%E6%B2%B3%E5%86%85%E7%90%A2%E5%B7%B3%E3%81%AE%E5%80%8B%E5%B1%95%E3%80%8E%E7%9F%A5%E6%84%9F%20-CHIKAN-%E3%80%8F%E7%AC%AC2%E5%9B%9E%E3%80%82%E9%96%8B%E5%82%AC%E6%99%82%E9%96%93%2011%3A00%E3%80%9C18%3A00%E3%80%81%E5%85%A5%E5%A0%B4%E7%84%A1%E6%96%99%E3%80%82%E5%85%AC%E5%BC%8F%E3%83%9A%E3%83%BC%E3%82%B8%EF%BC%9Ahttps%3A%2F%2Fyahagi-design.github.io%2Fchikan-exhibition%2F&amp;location=DEIL%20%E6%98%A5%E6%97%A5%E4%BA%95%E3%82%AA%E3%83%95%E3%82%A3%E3%82%B9%E3%83%BB%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%AB%E3%83%BC%E3%83%A0%EF%BC%88%E6%84%9B%E7%9F%A5%E7%9C%8C%E6%98%A5%E6%97%A5%E4%BA%95%E5%B8%82%E7%91%9E%E7%A9%82%E9%80%9A4%E4%B8%81%E7%9B%AE50%EF%BC%89" target="_blank" rel="noopener">Googleカレンダーに追加 <span aria-hidden="true">→</span></a>
+            </p>
+          </div>
 
           <div class="reminder-box">
             <h3>リマインドについて</h3>
@@ -766,6 +699,20 @@
             </ul>
           </div>
         </div>
+      </section>
+
+      <section class="block wrap rv" id="press">
+        <div class="sec-head">
+          <span class="no">08</span>
+          <h2>メディアの方へ</h2>
+          <span class="en">PRESS</span>
+        </div>
+        <div class="reserve-lead">
+          <p>取材・掲載のご相談、掲載用写真素材のご提供など、メディア関係者の皆さまからのお問い合わせは、下のフォームからお送りください。</p>
+        </div>
+        <p class="press-action">
+          <a class="btn-pill" href="https://docs.google.com/forms/d/e/1FAIpQLSdi57uBtjL3EIxKg5MYDW0anmYRAk1PP0QwDfc5kQuXjrMM3Q/viewform" target="_blank" rel="noopener">お問い合わせフォームへ</a>
+        </p>
       </section>
     </main>
 
@@ -827,89 +774,6 @@
         } else {
           cd.textContent = "本展は終了しました";
         }
-
-        /* 予約フォーム */
-        var form = document.getElementById("reserve-form");
-        var nameInput = document.getElementById("f-name");
-        var dateSel = document.getElementById("f-date");
-        var timeSel = document.getElementById("f-time");
-        var peopleSel = document.getElementById("f-people");
-        var errorEl = document.getElementById("form-error");
-        var doneEl = document.getElementById("reserve-done");
-        var detailEl = document.getElementById("reserve-detail");
-        var gcalReserve = document.getElementById("gcal-reserve");
-
-        function syncGcal() {
-          gcalReserve.href = gcalURL(dateSel.value, timeSel.value);
-        }
-        dateSel.addEventListener("change", syncGcal);
-        timeSel.addEventListener("change", syncGcal);
-        syncGcal();
-
-        function escICS(s) {
-          return s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
-        }
-
-        form.addEventListener("submit", function (ev) {
-          ev.preventDefault();
-          var name = nameInput.value.trim();
-          if (!name) {
-            errorEl.style.display = "block";
-            nameInput.focus();
-            return;
-          }
-          errorEl.style.display = "none";
-
-          var dateStr = dateSel.value;
-          var timeStr = timeSel.value;
-          var people = peopleSel.value;
-          var stamp = new Date();
-          var dtstamp = stamp.getUTCFullYear() + pad(stamp.getUTCMonth() + 1) + pad(stamp.getUTCDate()) +
-            "T" + pad(stamp.getUTCHours()) + pad(stamp.getUTCMinutes()) + pad(stamp.getUTCSeconds()) + "Z";
-          var uid = "chikan-" + dateStr + "-" + timeStr.replace(":", "") + "-" + Math.random().toString(36).slice(2, 10) + "@chikan-exhibition";
-
-          var lines = [
-            "BEGIN:VCALENDAR",
-            "VERSION:2.0",
-            "PRODID:-//CHIKAN Exhibition//Reservation//JA",
-            "CALSCALE:GREGORIAN",
-            "METHOD:PUBLISH",
-            "BEGIN:VEVENT",
-            "UID:" + uid,
-            "DTSTAMP:" + dtstamp,
-            "DTSTART:" + toUTCStamp(dateStr, timeStr),
-            "DTEND:" + endStamp(dateStr),
-            "SUMMARY:" + escICS(TITLE + " 来場予約"),
-            "LOCATION:" + escICS(VENUE),
-            "DESCRIPTION:" + escICS(DETAILS + " 予約者：" + name + "様／人数：" + people + "名"),
-            "BEGIN:VALARM",
-            "ACTION:DISPLAY",
-            "TRIGGER:-P7D",
-            "DESCRIPTION:" + escICS("『知感 -CHIKAN-』来場まであと1週間です"),
-            "END:VALARM",
-            "BEGIN:VALARM",
-            "ACTION:DISPLAY",
-            "TRIGGER:-P1D",
-            "DESCRIPTION:" + escICS("『知感 -CHIKAN-』来場は明日です"),
-            "END:VALARM",
-            "END:VEVENT",
-            "END:VCALENDAR"
-          ];
-          var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
-          var url = URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.href = url;
-          a.download = "chikan-reservation-" + dateStr + ".ics";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
-
-          var dateLabel = dateSel.options[dateSel.selectedIndex].text;
-          detailEl.textContent = name + " 様 — " + dateLabel + " " + timeStr + " 来場 / " + peopleSel.options[peopleSel.selectedIndex].text;
-          doneEl.style.display = "block";
-          doneEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        });
 
       })();
     </script>
